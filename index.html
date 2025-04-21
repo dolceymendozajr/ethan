@@ -21,10 +21,10 @@
 <body class="min-h-screen bg-sky-200 flex items-center justify-center">
     <div class="swap"></div>
     <div class="envelope-container text-center hidden">
-        <h1 class="text-7xl font-bold text-sky-600 title">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-sky-600 title mb-3">
             Baby shower de Ethan
         </h1>
-        <h1 class="text-3xl font-bold text-sky-700">Tienes una nueva invitación</h1>
+        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold text-sky-700">Tienes una nueva invitación</h1>
         <p class="text-xs">Haz click en el sobre para ver más</p>
         <div class="envelope" id="envelope">
             <div class="front flap"></div>
@@ -38,8 +38,8 @@
         </div>
     </div>
 
-    <div class="flyer flex items-center flex-col justify-evenly min-h-screen min-w-screen hidden">
-        <img src="assets/invitacion.PNG" alt="">
+    <div class="flyer flex items-center flex-col justify-evenly min-h-screen min-w-screen p-5 hidden">
+        <img class="w-[90vw] lg:w-[42vw] rounded-3xl" src=" assets/invitacion.PNG" alt="">
         <div class="flex items-center justify-between">
 
             <a href="https://forms.gle/hRQ91TWbtWVDkKhT8" target="_blank"
@@ -47,7 +47,7 @@
                 <i class="fa-regular fa-calendar-check mr-2"></i>
                 Confirmar asistencia
             </a>
-            <a id="gifts-trigger" href="#"
+            <a id="gifts-trigger"
                 class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-500">
                 <i class="fa-solid fa-baby-carriage mr-2"></i>
                 Ver regalos
@@ -61,25 +61,25 @@
     </div>
 
     <div id="invitation"
-        class="fixed top-0 left-0 w-full h-full bg-sky-100 invisible transition delay-150 duration-300 ease-in-out flex-col overflow-y-auto p-10 z-50">
+        class="fixed top-0 left-0 w-full h-full bg-sky-100 invisible transition delay-150 duration-300 ease-in-out flex-col overflow-y-auto p-5 md:p-10 z-50">
         <div class="max-w-5xl mx-auto text-left">
             <div class="flex flex-col justify-center items-center">
-                <h1 class="text-7xl font-bold text-sky-600 title mb-5">
+                <h1 class="text-center text-5xl md:text-6xl lg:text-7xl font-bold text-sky-600 title mb-5">
                     Baby shower de Ethan
                 </h1>
                 <img class="rounded-lg"
                     src="https://www.wishbob.com/user_uploads/own_design_pictures/19485887067f872ee0ee9c_desktop.jpeg"
                     alt="mockup" />
                 <div class="bg-white mt-5 rounded-lg p-5 text-center">
-                    <h1 class="text-3xl text-sky-700 font-bold mb-5">¡Queridos amigos, querida familia!</h1>
-                    <h6 class="text-sky-700">
+                    <h1 class="text-xl md:text-3xl text-sky-700 font-bold mb-5">¡Queridos amigos, querida familia!</h1>
+                    <h6 class="text-sm md:text-base text-sky-700">
                         Muy pronto llegará a nuestras vidas nuestro hijo Ethan, y con él, una nueva
                         etapa llena de amor, ilusión y momentos inolvidables. Queremos celebrar esta alegría junto a
                         ustedes, compartiendo un día especial en su honor.
 
                         Ethan aún no tiene idea de lo que son los regalos, pero para quienes quieran acompañarnos con un
                         detalle, hemos preparado una lista con algunas ideas en Amazon y Mercadolibre.</h6>
-                    <p class="mt-5 text-sm text-sky-900">
+                    <p class="mt-5 text-xs md:text-sm text-sky-900">
                         No es necesario que sea exactamente lo que está en los enlaces,
                         son solo sugerencias pensadas con cariño. Lo más importante es contar con su compañía y
                         compartir juntos esta hermosa espera.
@@ -158,6 +158,11 @@
                         updates[path] = gift;
 
                         update(dbRef, updates);
+
+                        //Reload page in this section
+                        var url = new URL(window.location.href);
+                        url.searchParams.set('section', 'regalos');
+                        window.location.href = url.href;
                     } else {
                         console.log('Gift taken');
                     }
@@ -180,8 +185,8 @@
                                 <i class="ml-2 text-sm fa-solid fa-arrow-up-right-from-square"></i>
                             </h5>
                         </a>
-                        <a href="#" onclick="updateStatus(${gift.id})"
-                            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-500">
+                        <a onclick="updateStatus(${gift.id})"
+                            class="${gift.status == 1 ? 'cursor-not-allowed!' : ''} inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-500">
                             ${gift.status == 0 ? 'Marcar como comprado' : 'Regalo comprado'}
                         </a>
                     </div>

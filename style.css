@@ -11,6 +11,10 @@ body,
   background-blend-mode: unset;
 }
 
+a {
+  cursor: pointer;
+}
+
 .title {
   font-family: "Great Vibes", cursive;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -183,8 +187,6 @@ body,
 }
 
 .flyer > img {
-  width: 42vw;
-  border-radius: 20px;
   box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
 }
 

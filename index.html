@@ -1,32 +1,235 @@
-<link rel="stylesheet/less" type="text/css" href="styles.less" />
-<script src="https://cdn.jsdelivr.net/npm/less" ></script>
-<div class="envlope-wrapper">
-    <div id="envelope" class="close">
-        <div class="front flap"></div>
-        <div class="front pocket"></div>
-        <div class="letter">
-            <div class="words line1"></div>
-            <div class="words line2"></div>
-            <div class="words line3"></div>
-            <div class="words line4"></div>
-        </div>
-        <div class="hearts">
-            <div class="heart a1"></div>
-            <div class="heart a2"></div>
-            <div class="heart a3"></div>
+<!DOCTYPE html>
+<html lang="en" class="scheme-light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <title>Ethan</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/0c1a487a46.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="min-h-screen bg-sky-200 flex items-center justify-center">
+    <div class="swap"></div>
+    <div class="envelope-container text-center hidden">
+        <h1 class="text-7xl font-bold text-sky-600 title">
+            Baby shower de Ethan
+        </h1>
+        <h1 class="text-3xl font-bold text-sky-700">Tienes una nueva invitación</h1>
+        <p class="text-xs">Haz click en el sobre para ver más</p>
+        <div class="envelope" id="envelope">
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+            <div class="letter">
+                <div class="words line1"></div>
+                <div class="words line2"></div>
+                <div class="words line3"></div>
+                <div class="words line4"></div>
+            </div>
         </div>
     </div>
-</div>
-<div class="reset">
-    <button id="open">Open</button>
-    <button id="reset">Reset</button>
-</div>
 
-<!-- 
+    <div class="flyer flex items-center flex-col justify-evenly min-h-screen min-w-screen hidden">
+        <img src="assets/invitacion.PNG" alt="">
+        <div class="flex items-center justify-between">
 
-Inspired by:
+            <a href="https://forms.gle/hRQ91TWbtWVDkKhT8" target="_blank"
+                class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-teal-600 hover:bg-teal-500 focus:ring-4 focus:ring-teal-500">
+                <i class="fa-regular fa-calendar-check mr-2"></i>
+                Confirmar asistencia
+            </a>
+            <a id="gifts-trigger" href="#"
+                class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-500">
+                <i class="fa-solid fa-baby-carriage mr-2"></i>
+                Ver regalos
+            </a>
+            <a href="https://maps.app.goo.gl/gSPYaScD6X9aLEqa7" target="_blank"
+                class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-sky-900 rounded-lg bg-gray-100 hover:bg-white focus:ring-4 focus:ring-white">
+                <i class="fa-solid fa-location-dot mr-2"></i>
+                Ver lugar
+            </a>
+        </div>
+    </div>
 
-    * https://medium.com/web-for-you/how-to-make-a-interactive-envelope-9df970614eea
-    * https://codepen.io/lisafolkerson/pen/BjRoJO    
+    <div id="invitation"
+        class="fixed top-0 left-0 w-full h-full bg-sky-100 invisible transition delay-150 duration-300 ease-in-out flex-col overflow-y-auto p-10 z-50">
+        <div class="max-w-5xl mx-auto text-left">
+            <div class="flex flex-col justify-center items-center">
+                <h1 class="text-7xl font-bold text-sky-600 title mb-5">
+                    Baby shower de Ethan
+                </h1>
+                <img class="rounded-lg"
+                    src="https://www.wishbob.com/user_uploads/own_design_pictures/19485887067f872ee0ee9c_desktop.jpeg"
+                    alt="mockup" />
+                <div class="bg-white mt-5 rounded-lg p-5 text-center">
+                    <h1 class="text-3xl text-sky-700 font-bold mb-5">¡Queridos amigos, querida familia!</h1>
+                    <h6 class="text-sky-700">
+                        Muy pronto llegará a nuestras vidas nuestro hijo Ethan, y con él, una nueva
+                        etapa llena de amor, ilusión y momentos inolvidables. Queremos celebrar esta alegría junto a
+                        ustedes, compartiendo un día especial en su honor.
 
--->
+                        Ethan aún no tiene idea de lo que son los regalos, pero para quienes quieran acompañarnos con un
+                        detalle, hemos preparado una lista con algunas ideas en Amazon y Mercadolibre.</h6>
+                    <p class="mt-5 text-sm text-sky-900">
+                        No es necesario que sea exactamente lo que está en los enlaces,
+                        son solo sugerencias pensadas con cariño. Lo más importante es contar con su compañía y
+                        compartir juntos esta hermosa espera.
+                    </p>
+                </div>
+            </div>
+
+            <div id="gifts"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+        import {
+            getDatabase,
+            ref,
+            get,
+            child,
+            update,
+        } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDUPCOEv4wMvPLe6_qyiAzu_VpV778LfO4",
+            authDomain: "ethan-bc51b.firebaseapp.com",
+            databaseURL: "https://ethan-bc51b-default-rtdb.firebaseio.com",
+            projectId: "ethan-bc51b",
+            storageBucket: "ethan-bc51b.firebasestorage.app",
+            messagingSenderId: "957410045934",
+            appId: "1:957410045934:web:8eb8fcd5e4b00458ffe8ff",
+            measurementId: "G-F7X46Z0EYT",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        const dbRef = ref(database);
+
+        var gifts = [];
+
+        const envelope = document.getElementById("envelope");
+        const invitation = document.getElementById("invitation");
+        const giftsTrigger = document.getElementById("gifts-trigger");
+
+        const getDataFromServer = () => {
+            get(child(dbRef, `babyShower/gifts`))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        gifts = snapshot.val();
+                        gifts.forEach((g) => {
+                            renderData(g);
+                        });
+                    } else {
+                        console.log("No data available");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        };
+
+        const updateStatus = (id) => {
+            const path = "/babyShower/gifts/" + (id - 1);
+            get(child(dbRef, path)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const gift = snapshot.val();
+                    if (gift.status == 0) {
+
+                        gift.status = 1;
+
+                        const updates = {};
+                        updates[path] = gift;
+
+                        update(dbRef, updates);
+                    } else {
+                        console.log('Gift taken');
+                    }
+                } else {
+                    console.log("No data available");
+                }
+            });
+        };
+
+        const renderData = (gift) => {
+            const card = `
+                <div class="flex flex-wrap flex-col items-center text-center max-w-sm bg-white ${gift.status == 1 ? 'bg-gray-100 grayscale' : ''} justify-between border border-gray-200 rounded-lg shadow-sm">
+                    <a href="${gift.link}" target="_blank">
+                        <img class="mt-2 rounded-t-lg" src="${gift.img_url}" alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a class="mb-5" href="${gift.link}" target="_blank">
+                            <h5 class="mb-2 text-xl font-bold tracking-tight text-sky-900">
+                                ${gift.title}
+                                <i class="ml-2 text-sm fa-solid fa-arrow-up-right-from-square"></i>
+                            </h5>
+                        </a>
+                        <a href="#" onclick="updateStatus(${gift.id})"
+                            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 focus:ring-4 focus:ring-cyan-500">
+                            ${gift.status == 0 ? 'Marcar como comprado' : 'Regalo comprado'}
+                        </a>
+                    </div>
+                </div>`;
+
+            document.getElementById("gifts").innerHTML += card;
+        };
+
+        giftsTrigger.addEventListener("click", () => {
+            invitation.classList.remove("invisible");
+            invitation.classList.add("visible");
+        });
+
+
+        envelope.addEventListener("click", () => {
+            envelope.classList.add("open");
+            setTimeout(() => {
+                document.getElementsByClassName('flyer')[0].classList.remove('hidden');
+                document.getElementsByClassName('envelope-container')[0].classList.add('hidden');
+            }, 1000);
+        });
+
+        document.onreadystatechange = function () {
+            if (document.readyState === "complete") {
+                document.getElementsByClassName('swap')[0].classList.add('hidden');
+                document.getElementsByClassName('envelope-container')[0].classList.remove('hidden');
+                getDataFromServer();
+                window.updateStatus = updateStatus;
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const sectionParam = urlParams.get('section');
+                switch (sectionParam) {
+                    case "regalos":
+                        invitation.classList.remove("invisible");
+                        invitation.classList.add("visible");
+                        break;
+
+                    case "invitacion":
+                        document.getElementsByClassName('flyer')[0].classList.remove('hidden');
+                        document.getElementsByClassName('envelope-container')[0].classList.add('hidden');
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

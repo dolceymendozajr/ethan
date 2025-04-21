@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Caitlin Script";
+  src: url("https://dolceymendozajr.github.io/ethan/assets/font.ttf");
+}
+
 * {
   font-family: "Varela Round", sans-serif;
 }
@@ -16,7 +21,7 @@ a {
 }
 
 .title {
-  font-family: "Great Vibes", cursive;
+  font-family: "Caitlin Script", cursive;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 

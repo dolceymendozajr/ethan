@@ -159,7 +159,9 @@
             get(child(dbRef, `babyShower/gifts`))
                 .then((snapshot) => {
                     if (snapshot.exists()) {
-                        gifts = snapshot.val();
+                        gifts = snapshot.val().sort((a, b) => {
+                            return a.status - b.status;
+                        });
                         gifts.forEach((g) => {
                             renderData(g);
                         });
